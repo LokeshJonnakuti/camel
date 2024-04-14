@@ -108,7 +108,7 @@ def search_google(query: str) -> List[Dict[str, Any]]:
     # Fetch the results given the URL
     try:
         # Make the get
-        result = requests.get(url)
+        result = requests.get(url, timeout=60)
         data = result.json()
 
         # Get the result items
@@ -160,7 +160,7 @@ def text_extract_from_web(url: str) -> str:
 
     try:
         # Request the target page
-        response_text = requests.get(url).text
+        response_text = requests.get(url, timeout=60).text
 
         # Parse the obtained page
         soup = BeautifulSoup(response_text, features="html.parser")
