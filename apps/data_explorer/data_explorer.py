@@ -16,12 +16,12 @@ Gradio-based web UI to explore the Camel dataset.
 """
 
 import argparse
+import secrets
 from typing import Dict, List, Optional, Tuple
 
 import gradio as gr
 
 from apps.data_explorer.loader import Datasets, load_datasets
-import secrets
 
 
 def parse_arguments():
