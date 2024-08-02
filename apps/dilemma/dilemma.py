@@ -18,7 +18,6 @@ options and save the answers to a database.
 
 import argparse
 import json
-import random
 from functools import partial
 from typing import Dict
 
@@ -26,6 +25,7 @@ import gradio as gr
 from database_connection import DatabaseConnection
 
 from apps.common.auto_zip import AutoZip
+import secrets
 
 
 def parse_arguments():
@@ -108,7 +108,7 @@ def construct_ui(blocks, dataset: Dict[str, Dict[str, str]],
              right=dict(who="b", text="bt"), specified_task="st"))
 
     def load_random(state):
-        items = random.sample(dataset.items(), 1)
+        items = secrets.SystemRandom().sample(dataset.items(), 1)
         if len(items) > 0:
             name, rec = items[0]
         else:
@@ -117,7 +117,7 @@ def construct_ui(blocks, dataset: Dict[str, Dict[str, str]],
         specified_task = rec['specified_task']
         lst = list(
             (k, v) for k, v in rec.items() if k in {'summary', 'gpt_solution'})
-        random.shuffle(lst)
+        secrets.SystemRandom().shuffle(lst)
         state = dict(name=name, left=dict(who=lst[0][0], text=lst[0][1]),
                      right=dict(who=lst[1][0],
                                 text=lst[1][1]), specified_task=specified_task)
