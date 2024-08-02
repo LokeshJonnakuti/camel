@@ -11,6 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # =========== Copyright 2023 @ CAMEL-AI.org. All Rights Reserved. ===========
+import secrets
 import warnings
 from typing import Any, Dict, Optional, Sequence
 
@@ -22,7 +23,6 @@ from camel.messages import BaseMessage
 from camel.responses import ChatAgentResponse
 from camel.types import ModelType
 from camel.utils import get_first_int, print_text_animated
-import secrets
 
 
 class CriticAgent(ChatAgent):
