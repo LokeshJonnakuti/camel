@@ -18,6 +18,7 @@ options and save the answers to a database.
 
 import argparse
 import json
+import secrets
 from functools import partial
 from typing import Dict
 
@@ -25,7 +26,6 @@ import gradio as gr
 from database_connection import DatabaseConnection
 
 from apps.common.auto_zip import AutoZip
-import secrets
 
 
 def parse_arguments():

@@ -16,6 +16,7 @@ import concurrent.futures
 import itertools
 import json
 import os
+import secrets
 from typing import Dict, Tuple
 
 import numpy as np
@@ -24,7 +25,6 @@ from camel.agents import ChatAgent
 from camel.messages import BaseMessage
 from camel.prompts import SolutionExtractionPromptTemplateDict
 from camel.types import ModelType, RoleType
-import secrets
 
 parser = argparse.ArgumentParser(
     description='Arguments for conversation summarization.')
