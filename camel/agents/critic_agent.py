@@ -11,7 +11,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # =========== Copyright 2023 @ CAMEL-AI.org. All Rights Reserved. ===========
-import random
 import warnings
 from typing import Any, Dict, Optional, Sequence
 
@@ -23,6 +22,7 @@ from camel.messages import BaseMessage
 from camel.responses import ChatAgentResponse
 from camel.types import ModelType
 from camel.utils import get_first_int, print_text_animated
+import secrets
 
 
 class CriticAgent(ChatAgent):
@@ -128,7 +128,7 @@ class CriticAgent(ChatAgent):
         warnings.warn("Critic failed to get a valid option. "
                       f"After {self.retry_attempts} attempts. "
                       "Returning a random option.")
-        return random.choice(list(self.options_dict.values()))
+        return secrets.choice(list(self.options_dict.values()))
 
     def parse_critic(self, critic_msg: BaseMessage) -> Optional[str]:
         r"""Parses the critic's message and extracts the choice.

@@ -16,12 +16,12 @@ Gradio-based web UI to explore the Camel dataset.
 """
 
 import argparse
-import random
 from typing import Dict, List, Optional, Tuple
 
 import gradio as gr
 
 from apps.data_explorer.loader import Datasets, load_datasets
+import secrets
 
 
 def parse_arguments():
@@ -188,9 +188,9 @@ def construct_ui(blocks, datasets: Datasets,
         dataset = datasets[dataset_name]
         assistant_roles = dataset['assistant_roles']
         user_roles = dataset['user_roles']
-        assistant_role = random.choice(assistant_roles) \
+        assistant_role = secrets.choice(assistant_roles) \
             if len(assistant_roles) > 0 else ""
-        user_role = random.choice(user_roles) if len(user_roles) > 0 else ""
+        user_role = secrets.choice(user_roles) if len(user_roles) > 0 else ""
         return (gr.update(value=assistant_role, choices=assistant_roles),
                 gr.update(value=user_role, choices=user_roles))
 

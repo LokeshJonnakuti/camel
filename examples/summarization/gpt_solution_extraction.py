@@ -16,7 +16,6 @@ import concurrent.futures
 import itertools
 import json
 import os
-import random
 from typing import Dict, Tuple
 
 import numpy as np
@@ -25,6 +24,7 @@ from camel.agents import ChatAgent
 from camel.messages import BaseMessage
 from camel.prompts import SolutionExtractionPromptTemplateDict
 from camel.types import ModelType, RoleType
+import secrets
 
 parser = argparse.ArgumentParser(
     description='Arguments for conversation summarization.')
@@ -143,7 +143,7 @@ def solution_extraction(conversation: Dict, flattened_conversation: str,
 def main():
     args = parser.parse_args()
     np.random.seed(args.seed)
-    random.seed(args.seed)
+    secrets.SystemRandom().seed(args.seed)
 
     total_num_assistant_roles = 50
     total_num_user_roles = 50
@@ -155,15 +155,14 @@ def main():
 
     # Randomly subsample `subsample_num_assistant_roles`
     # of the total assistant roles
-    subsampled_assistant_roles = random.sample(
-        range(1, total_num_assistant_roles + 1), subsample_num_assistant_roles)
+    subsampled_assistant_roles = secrets.SystemRandom().sample(range(1, total_num_assistant_roles + 1), subsample_num_assistant_roles)
 
     # Randomly subsample `subsample_num_user_roles` of the total user roles
-    subsampled_user_roles = random.sample(range(1, total_num_user_roles + 1),
+    subsampled_user_roles = secrets.SystemRandom().sample(range(1, total_num_user_roles + 1),
                                           subsample_num_user_roles)
 
     # Randomly subsample `subsample_num_tasks` of the total tasks
-    subsampled_tasks = random.sample(range(1, total_num_tasks + 1),
+    subsampled_tasks = secrets.SystemRandom().sample(range(1, total_num_tasks + 1),
                                      subsample_num_tasks)
 
     file_names = list(
