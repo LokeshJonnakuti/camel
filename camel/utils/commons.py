@@ -31,8 +31,9 @@ from typing import (
 )
 from urllib.parse import urlparse
 
-from camel.types import TaskType
 from security import safe_requests
+
+from camel.types import TaskType
 
 F = TypeVar('F', bound=Callable[..., Any])
 

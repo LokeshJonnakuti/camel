@@ -14,11 +14,12 @@
 import os
 from typing import Any, Dict, List
 
+from security import safe_requests
+
 import camel.agents
 from camel.functions import OpenAIFunction
 from camel.messages import BaseMessage
 from camel.prompts import TextPrompt
-from security import safe_requests
 
 
 def search_wiki(entity: str) -> str:
