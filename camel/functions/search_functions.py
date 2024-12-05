@@ -14,6 +14,8 @@
 import os
 from typing import Any, Dict, List
 
+from security import safe_requests
+
 import camel.agents
 from camel.functions import OpenAIFunction
 from camel.messages import BaseMessage
@@ -108,7 +110,7 @@ def search_google(query: str) -> List[Dict[str, Any]]:
     # Fetch the results given the URL
     try:
         # Make the get
-        result = requests.get(url)
+        result = safe_requests.get(url)
         data = result.json()
 
         # Get the result items
@@ -160,7 +162,7 @@ def text_extract_from_web(url: str) -> str:
 
     try:
         # Request the target page
-        response_text = requests.get(url).text
+        response_text = safe_requests.get(url).text
 
         # Parse the obtained page
         soup = BeautifulSoup(response_text, features="html.parser")
